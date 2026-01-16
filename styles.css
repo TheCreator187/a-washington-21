@@ -1,0 +1,842 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #d4302f;
+    --secondary-color: #1a1a1a;
+    --accent-color: #f4b41a;
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --bg-light: #f8f8f8;
+    --bg-dark: #0a0a0a;
+    --gradient-1: linear-gradient(135deg, #d4302f 0%, #8b1e1e 100%);
+    --gradient-2: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-dark);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-2);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212, 48, 47, 0.05) 2px, rgba(212, 48, 47, 0.05) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(212, 48, 47, 0.05) 2px, rgba(212, 48, 47, 0.05) 4px);
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.jersey-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 180px;
+    font-weight: bold;
+    color: var(--primary-color);
+    line-height: 1;
+    text-shadow: 
+        0 0 20px rgba(212, 48, 47, 0.5),
+        0 0 40px rgba(212, 48, 47, 0.3),
+        4px 4px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.player-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: var(--text-light);
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.player-position {
+    font-size: 24px;
+    color: var(--accent-color);
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.school-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 18px;
+    color: var(--text-light);
+    opacity: 0.9;
+}
+
+.location-icon {
+    color: var(--primary-color);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.scroll-arrow {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--text-light);
+    border-radius: 20px;
+    position: relative;
+}
+
+.scroll-arrow::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--text-light);
+    border-radius: 50%;
+    animation: scrollDown 2s ease-in-out infinite;
+}
+
+@keyframes scrollDown {
+    0%, 100% { transform: translate(-50%, 0); opacity: 0; }
+    50% { transform: translate(-50%, 20px); opacity: 1; }
+}
+
+/* Section Title */
+.section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: 4px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--gradient-1);
+    border-radius: 2px;
+}
+
+/* Stats Section */
+.stats-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, #1a1a1a 100%);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 48, 47, 0.3);
+    border-radius: 12px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 48, 47, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.stat-card:hover::before {
+    left: 100%;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px rgba(212, 48, 47, 0.3);
+}
+
+.stat-icon {
+    width: 80px;
+    height: 80px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.stat-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--text-light);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 300;
+}
+
+/* Profile Section */
+.profile-section {
+    padding: 100px 0;
+    background: #0f0f0f;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.profile-image-container {
+    position: relative;
+}
+
+.image-frame {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.image-frame::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-1);
+    z-index: -1;
+    border-radius: 14px;
+}
+
+.profile-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    background: rgba(212, 48, 47, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.basketball-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.profile-info {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 50px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 18px;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+/* Highlights Section */
+.highlights-section {
+    padding: 100px 0;
+    background: var(--bg-dark);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.video-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    background: #000;
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+.video-wrapper:hover .play-button {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.video-title {
+    padding: 20px;
+    font-size: 18px;
+    color: var(--text-light);
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+/* Achievements Section */
+.achievements-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, #1a1a1a 100%);
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.achievement-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 50px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-1);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.achievement-card:hover::before {
+    transform: scaleX(1);
+}
+
+.achievement-card:hover {
+    border-color: var(--primary-color);
+    background: rgba(212, 48, 47, 0.1);
+    transform: translateY(-10px);
+}
+
+.achievement-icon {
+    width: 80px;
+    height: 80px;
+    color: var(--accent-color);
+    margin-bottom: 25px;
+    transition: transform 0.3s ease;
+}
+
+.achievement-card:hover .achievement-icon {
+    transform: rotateY(360deg);
+}
+
+.achievement-card h3 {
+    font-size: 24px;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.achievement-card p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 100px 0;
+    background: #0f0f0f;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 48, 47, 0.3);
+    border-radius: 12px;
+    padding: 80px 60px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+    color: var(--text-light);
+}
+
+.contact-icon {
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+/* Footer */
+.footer {
+    background: var(--bg-dark);
+    padding: 60px 0 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logo-basketball {
+    width: 50px;
+    height: 50px;
+    color: var(--primary-color);
+}
+
+.footer-logo span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .player-name {
+        font-size: 56px;
+    }
+    
+    .jersey-number {
+        font-size: 140px;
+    }
+    
+    .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .container {
+        padding: 0 30px;
+    }
+    
+    .stat-card {
+        padding: 35px 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    .player-name {
+        font-size: 40px;
+        letter-spacing: 4px;
+    }
+    
+    .jersey-number {
+        font-size: 100px;
+    }
+    
+    .section-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-info {
+        padding: 30px 25px;
+    }
+    
+    .contact-card {
+        padding: 50px 25px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .stats-section,
+    .profile-section,
+    .highlights-section,
+    .achievements-section,
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+    
+    .video-card {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .player-name {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+    
+    .jersey-number {
+        font-size: 72px;
+    }
+    
+    .player-position {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+    
+    .school-info {
+        font-size: 13px;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        padding: 30px 20px;
+    }
+    
+    .stat-value {
+        font-size: 48px;
+    }
+    
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .profile-info {
+        padding: 25px 20px;
+    }
+    
+    .info-item {
+        padding: 12px 0;
+    }
+    
+    .info-label {
+        font-size: 11px;
+    }
+    
+    .info-value {
+        font-size: 16px;
+    }
+    
+    .achievement-card {
+        padding: 35px 20px;
+    }
+    
+    .achievement-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .achievement-card h3 {
+        font-size: 20px;
+    }
+    
+    .contact-card {
+        padding: 40px 20px;
+    }
+    
+    .contact-item {
+        font-size: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .footer-logo span {
+        font-size: 18px;
+    }
+    
+    .stats-section,
+    .profile-section,
+    .highlights-section,
+    .achievements-section,
+    .contact-section {
+        padding: 50px 0;
+    }
+    
+    .hero {
+        padding: 0 15px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Improved touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+    .stat-card,
+    .achievement-card,
+    .video-card {
+        min-height: 44px;
+    }
+    
+    .contact-item {
+        padding: 12px;
+    }
+    
+    video {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Prevent text size adjustment on orientation change */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Better mobile video display */
+@media (max-width: 768px) {
+    .video-wrapper {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .play-button {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .play-button svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* Selection */
+::selection {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
